@@ -11,7 +11,8 @@
 // Frontend (aquí) → fetch() → Backend API → Database
 // ============================================
 
-const API_URL = 'http://localhost:8000/api/users';
+// URL relativa - funciona en localhost Y en producción
+const API_URL = '/api/users';
 
 // ============================================
 // INICIALIZACIÓN
