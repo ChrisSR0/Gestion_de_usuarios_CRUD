@@ -1,4 +1,9 @@
 import dotenv from 'dotenv';
+import dns from 'dns';
+
+// Forzar IPv4 (soluciona problemas de conexión en Render/Railway)
+dns.setDefaultResultOrder('ipv4first');
+
 dotenv.config();
 
 import pkg from 'pg';
@@ -13,9 +18,9 @@ const pool = new Pool({
     ssl: {
         rejectUnauthorized: false,
     },
-    // Mantener conexiones vivas
-    idleTimeoutMillis: 0,
-    connectionTimeoutMillis: 0,
+    // Timeouts para producción
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 10000,
 });
 
 // FUNCIÓN PARA EJECUTAR QUERIES
