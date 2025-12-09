@@ -1,0 +1,153 @@
+/* ============================================
+   SLASHKIDS - Estilos CSS
+   ============================================
+   CONCEPTO: Separación de responsabilidades
+   - HTML → Estructura
+   - CSS → Estilos (este archivo)
+   - JS → Lógica
+   ============================================ */
+
+/* Reset básico */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/* Body */
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background: #1a1a2e; 
+    color: #eee; 
+    padding: 20px;
+}
+
+/* Títulos */
+h1 { 
+    text-align: center; 
+    color: #00d9ff; 
+    margin-bottom: 20px; 
+}
+
+h2 {
+    color: #00d9ff;
+    margin-bottom: 15px;
+}
+
+/* Contenedor principal */
+.container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+
+/* ============================================
+   FORMULARIO
+   ============================================ */
+.form-card {
+    background: #16213e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group { 
+    margin-bottom: 10px; 
+}
+
+.form-group label { 
+    display: block; 
+    margin-bottom: 5px; 
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #0f3460;
+    color: #fff;
+}
+
+.form-group input::placeholder {
+    color: #888;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-top: 10px;
+    transition: opacity 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn-primary { 
+    background: #00d9ff; 
+    color: #000; 
+}
+
+.btn-danger { 
+    background: #ff4757; 
+    color: #fff; 
+}
+
+.btn-warning { 
+    background: #ffa502; 
+    color: #000; 
+}
+
+/* ============================================
+   TABLA
+   ============================================ */
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+}
+
+th, td { 
+    padding: 12px; 
+    text-align: left; 
+    border-bottom: 1px solid #0f3460; 
+}
+
+th { 
+    background: #0f3460; 
+    color: #00d9ff; 
+}
+
+tr:hover { 
+    background: #16213e; 
+}
+
+/* ============================================
+   MENSAJES
+   ============================================ */
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.message.success { 
+    background: #00d97f; 
+    color: #000; 
+    display: block; 
+}
+
+.message.error { 
+    background: #ff4757; 
+    color: #fff; 
+    display: block; 
+}

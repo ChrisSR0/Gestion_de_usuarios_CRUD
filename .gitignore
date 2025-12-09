@@ -1,0 +1,38 @@
+# ============================================
+# GITIGNORE - SlashKids API
+# ============================================
+
+# Dependencias
+node_modules/
+
+# Variables de entorno (NUNCA subir a Git)
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+
+# Archivos de prueba
+test-db.js
+
+# Build (si aplica)
+dist/
+build/
