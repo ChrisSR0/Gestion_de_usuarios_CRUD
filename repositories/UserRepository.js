@@ -58,6 +58,13 @@ export const updateUser = async (id, userData)=>{
 // DELETE => eliminar user
 export const deleteUser = async(id)=>{
     // returnig => si encuetró  y elimino el user => RETORNA los datos , sino encontro nada devuelve el array vacio 
-    const sql = 'DELETE FROM users WHERE id = $1 RETURNING id';
-    return await query(sql, [id]);
+    try {
+        const sql = 'DELETE FROM users WHERE id = $1 RETURNING id';
+        const result = await query(sql, [id]);
+        console.log('🗑️ DELETE resultado para ID', id, ':', result);
+        return result;
+    } catch (error) {
+        console.error('❌ Error en DELETE para ID', id, ':', error.message);
+        throw error;
+    }
 }
