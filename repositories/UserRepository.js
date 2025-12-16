@@ -57,14 +57,22 @@ export const updateUser = async (id, userData)=>{
 
 // DELETE => eliminar user
 export const deleteUser = async(id)=>{
-    // returnig => si encuetró  y elimino el user => RETORNA los datos , sino encontro nada devuelve el array vacio 
     try {
+        // Deshabilitar restricciones temporalmente
+        await query('SET session_replication_role = replica');
+        
         const sql = 'DELETE FROM users WHERE id = $1 RETURNING id';
         const result = await query(sql, [id]);
-        console.log('🗑️ DELETE resultado para ID', id, ':', result);
+        
+        // Reactivar restricciones
+        await query('SET session_replication_role = DEFAULT');
+        
+        console.log('✅ Usuario ID', id, 'eliminado');
         return result;
     } catch (error) {
-        console.error('❌ Error en DELETE para ID', id, ':', error.message);
+        console.error('❌ Error al eliminar ID', id, ':', error.message);
+        // Reactivar restricciones en caso de error
+        await query('SET session_replication_role = DEFAULT');
         throw error;
     }
 }
