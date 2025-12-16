@@ -62,9 +62,10 @@ export const getUser = async (req, res) => {
     try {
         // Paso 1: Leer ID de la URL
         const { id } = req.params;
+        const idNum = parseInt(id, 10); // Convertir a número
         
         // Paso 2: Llamar al Service
-        const user = await userService.getUser(id);
+        const user = await userService.getUser(idNum);
         
         // Paso 3: Verificar si existe
         if (!user) {
@@ -95,11 +96,12 @@ export const updateUser = async (req, res)=>{
     try{
         // leo el id de la URL
         const {id} = req.params;
+        const idNum = parseInt(id, 10); // Convertir a número
         // leo los datos del body
         const userData = req.body;
 
         // llamo al service
-        const result = await userService.updateUser(id, userData)
+        const result = await userService.updateUser(idNum, userData)
         
         // verifico si se actualizo 
         if(result.length === 0){
@@ -131,12 +133,15 @@ export const deleteUser = async (req, res)=>{
 
         // leer la id de la url
         const {id} = req.params;
+        const idNum = parseInt(id, 10); // Convertir a número
+        console.log('🗑️ Intentando eliminar ID:', idNum, 'Tipo:', typeof idNum); // DEBUG
         // llamo al service
-        const result = await userService.deleteUser(id);
+        const result = await userService.deleteUser(idNum);
+        console.log('📦 Resultado de eliminar:', result); // DEBUG
 
         // verifico si se elimino (si es un array vacio es que no se encontro nada en la db y  entra al if)
         if(result.length === 0){//si el resultado que le pido a service y service a repository y este a la db es 0 pues no existe (no se encontro)
-
+            console.log('❌ Usuario ID', idNum, 'no encontrado en BD'); // DEBUG
             return res.status(404).json({
                 success: false,
                 message: 'Usuario no encontrado',
@@ -145,6 +150,7 @@ export const deleteUser = async (req, res)=>{
 
         // repo nos devuelve(a servivce y service a nosotros) el id es decir length = 1 si encontro y elimino al usuario (asi sabemos si existia)
         // reponder con exito => si no entro al if aterio eluser si existe (y repo lo elimino)
+        console.log('✅ Usuario ID', idNum, 'eliminado correctamente'); // DEBUG
         res.json({
             success:true,
             message: 'Usuario Eliminado',
@@ -152,6 +158,7 @@ export const deleteUser = async (req, res)=>{
         });
 
     } catch(error){
+        console.error('❌ ERROR en deleteUser:', error); // DEBUG
         res.status(500).json({
             success:false,
             message:'Error al eliminar usuario',
