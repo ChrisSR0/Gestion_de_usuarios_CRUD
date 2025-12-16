@@ -129,8 +129,8 @@ function renderUsers(users) {
             <td>${user.email}</td>
             <td>${user.role}</td>
             <td>
-                <button class="btn btn-warning" onclick="editUser(${user.id})">✏️ Editar</button>
-                <button class="btn btn-danger" onclick="deleteUser(${user.id})">🗑️ Eliminar</button>
+                <button class="btn btn-warning" onclick="editUser('${user.id}')">✏️ Editar</button>
+                <button class="btn btn-danger" onclick="deleteUser('${user.id}')">🗑️ Eliminar</button>
             </td>
         </tr>
     `).join('');
